@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
 import { heroCallouts } from "@/lib/content";
 import { Eyebrow } from "./Eyebrow";
@@ -6,7 +7,7 @@ import { Icon } from "./Icon";
 
 export function Hero() {
   return (
-    <section className="hero" id="home" aria-labelledby="hero-title">
+    <section className="hero" aria-labelledby="hero-title">
       <div className="hero__copy">
         <Eyebrow mono>Precision engineered components / Since 1997</Eyebrow>
         <h1 className="display hero__title" id="hero-title">
@@ -19,8 +20,8 @@ export function Hero() {
           Addagudi Exports Pvt. Ltd. (AEPL) is an engineering and manufacturing company producing custom-made engineered components for global industries.
         </p>
         <div className="hero__actions">
-          <a className="btn btn--primary btn--lg" href="#enquiry">Enquire Now <Icon id="i-arrow-ne" /></a>
-          <a className="link-underline" href="#products">View Products <Icon id="i-arrow-r" /></a>
+          <Link className="btn btn--primary btn--lg" href="/contact#enquiry-form">Enquire Now <Icon id="i-arrow-ne" /></Link>
+          <Link className="link-underline" href="/products">View Products <Icon id="i-arrow-r" /></Link>
         </div>
         <dl className="proof">
           <div><dt>1997</dt><dd>Established</dd></div>

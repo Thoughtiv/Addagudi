@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Credits() {
   return (
-    <main className="container" style={{ paddingBlock: 64 }}>
+    <main id="main" className="container" style={{ paddingBlock: 64 }}>
       <p className="eyebrow"><span className="eyebrow__rule" aria-hidden="true" />Image credits</p>
       <h1 className="display h-section" style={{ marginTop: 20 }}>Temporary <span className="accent">photography.</span></h1>
       <p className="section__lead" style={{ marginTop: 20, maxWidth: "70ch" }}>

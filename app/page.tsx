@@ -1,14 +1,10 @@
-import { Capabilities } from "@/components/Capabilities";
+import { CapabilitiesSection } from "@/components/CapabilitiesSection";
 import { CapabilityStrip } from "@/components/CapabilityStrip";
-import { EnquiryCta } from "@/components/EnquiryCta";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { CtaBand } from "@/components/EnquirySections";
 import { Hero } from "@/components/Hero";
-import { Machinery } from "@/components/Machinery";
-import { PageEffects } from "@/components/PageEffects";
-import { Process } from "@/components/Process";
-import { Products } from "@/components/Products";
-import { Quality } from "@/components/Quality";
+import { MachineryTeaser } from "@/components/MachineryParts";
+import { ProductsTeaser } from "@/components/ProductsSection";
+import { QualityTeaser } from "@/components/QualitySections";
 import { company } from "@/lib/content";
 
 const jsonLd = {
@@ -30,22 +26,15 @@ const jsonLd = {
 
 export default function Home() {
   return (
-    <>
-      <a className="skip-link" href="#main">Skip to content</a>
-      <Header />
-      <main id="main">
-        <Hero />
-        <CapabilityStrip />
-        <Capabilities />
-        <Products />
-        <Machinery />
-        <Process />
-        <Quality />
-        <EnquiryCta />
-      </main>
-      <Footer />
-      <PageEffects />
+    <main id="main">
+      <Hero />
+      <CapabilityStrip />
+      <CapabilitiesSection home />
+      <ProductsTeaser />
+      <MachineryTeaser />
+      <QualityTeaser />
+      <CtaBand />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-    </>
+    </main>
   );
 }

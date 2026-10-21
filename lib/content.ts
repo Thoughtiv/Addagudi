@@ -14,12 +14,12 @@ export const company = {
 };
 
 export const navItems = [
-  { key: "home", label: "Home", href: "#home" },
-  { key: "about", label: "About", href: "#about" },
-  { key: "products", label: "Products", href: "#products" },
-  { key: "machinery", label: "Machinery", href: "#machinery" },
-  { key: "quality", label: "Quality", href: "#quality" },
-  { key: "contact", label: "Contact", href: "#contact" },
+  { key: "home", label: "Home", href: "/" },
+  { key: "about", label: "About", href: "/about" },
+  { key: "products", label: "Products", href: "/products" },
+  { key: "machinery", label: "Machinery", href: "/machinery" },
+  { key: "quality", label: "Quality", href: "/quality" },
+  { key: "contact", label: "Contact", href: "/contact" },
 ] as const;
 
 export const stripItems = [
@@ -34,7 +34,7 @@ export const capabilities = [
     num: "01",
     title: "CNC Machining",
     text: "CNC turning and machining for custom components and complex geometries.",
-    href: "#machinery",
+    href: "/machinery",
     image: "/img/cap-cnc-machining.webp",
     tags: ["CNC turning", "Milling"],
     ariaLabel: "Explore CNC machining capability",
@@ -43,7 +43,7 @@ export const capabilities = [
     num: "02",
     title: "Component Manufacturing",
     text: "Custom-made engineered components manufactured to customer drawings and specifications.",
-    href: "#products",
+    href: "/products",
     image: "/img/cap-component-manufacturing.webp",
     tags: ["Customer drawings", "Specifications"],
     ariaLabel: "Explore component manufacturing capability",
@@ -52,7 +52,7 @@ export const capabilities = [
     num: "03",
     title: "Quality & Inspection",
     text: "Inspection and quality checks throughout production using appropriate calibrated equipment and documented procedures.",
-    href: "#quality",
+    href: "/quality",
     image: "/img/cap-quality-inspection.webp",
     tags: ["First article", "Calibrated", "Third-party"],
     ariaLabel: "Explore quality and inspection capability",

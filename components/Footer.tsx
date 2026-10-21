@@ -4,21 +4,21 @@ import { Icon } from "./Icon";
 
 export function Footer() {
   return (
-    <footer className="footer" id="contact">
+    <footer className="footer">
       <div className="container footer__grid">
         <div className="footer__col footer__brand">
-          <a className="brand brand--light" href="#home" aria-label="AEPL, back to top">
+          <Link className="brand brand--light" href="/" aria-label="AEPL, home">
             <span className="brand__mark" aria-hidden="true">AEPL</span>
             <span className="brand__name">Addagudi Exports<br />Pvt. Ltd.</span>
-          </a>
+          </Link>
           <p className="footer__tag">Engineered components.<br />Precision manufacturing.</p>
         </div>
 
         <nav className="footer__col" aria-label="Quick links">
           <h2 className="footer__h">Quick links</h2>
           <ul className="footer__links">
-            {[["About", "#about"], ["Products", "#products"], ["Machinery", "#machinery"], ["Quality", "#quality"], ["Enquiry", "#enquiry"], ["Contact", "#contact"]].map(([l, h]) => (
-              <li key={l}><a href={h}>{l}</a></li>
+            {[["About", "/about"], ["Products", "/products"], ["Machinery", "/machinery"], ["Quality", "/quality"], ["Enquiry", "/contact#enquiry-form"], ["Contact", "/contact"]].map(([l, h]) => (
+              <li key={l}><Link href={h}>{l}</Link></li>
             ))}
           </ul>
         </nav>

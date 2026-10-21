@@ -1,40 +1,18 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navItems } from "@/lib/content";
 import { Icon } from "./Icon";
 
-const SPY_IDS = ["home", "about", "products", "machinery", "process", "quality", "enquiry", "contact"];
-const INHERIT: Record<string, string> = { process: "machinery", enquiry: "quality" };
-
 export function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("home");
 
-  // active nav link follows scroll position
-  useEffect(() => {
-    let ticking = false;
-    const update = () => {
-      const line = window.innerHeight * 0.4;
-      let current = "home";
-      for (const id of SPY_IDS) {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= line) current = id;
-      }
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = "contact";
-      setActive(INHERIT[current] ?? current);
-    };
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => { update(); ticking = false; });
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
-  // close on Escape / when leaving the mobile breakpoint
+  // close the mobile menu on Escape, and when the viewport grows past the mobile breakpoint
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
     const mq = window.matchMedia("(min-width: 961px)");
@@ -47,29 +25,29 @@ export function Header() {
   return (
     <header className="site-header" id="top">
       <div className="site-header__inner">
-        <a className="brand" href="#home" aria-label="AEPL, Addagudi Exports Pvt. Ltd. — home">
+        <Link className="brand" href="/" aria-label="AEPL, Addagudi Exports Pvt. Ltd. — home">
           <span className="brand__mark" aria-hidden="true">AEPL</span>
           <span className="brand__name">Addagudi Exports<br />Pvt. Ltd.</span>
-        </a>
+        </Link>
 
         <nav className={`site-nav${open ? " is-open" : ""}`} id="site-nav" aria-label="Primary">
           <ul>
             {navItems.map((n) => (
               <li key={n.key}>
-                <a href={n.href} data-nav={n.key} aria-current={active === n.key ? "true" : undefined} onClick={() => setOpen(false)}>
+                <Link href={n.href} data-nav={n.key} aria-current={isActive(n.href) ? "page" : undefined} onClick={() => setOpen(false)}>
                   {n.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-          <a className="btn btn--primary site-nav__cta" href="#enquiry" onClick={() => setOpen(false)}>
+          <Link className="btn btn--primary site-nav__cta" href="/contact#enquiry-form" onClick={() => setOpen(false)}>
             Enquire Now <Icon id="i-arrow-ne" />
-          </a>
+          </Link>
         </nav>
 
         <div className="site-header__aside">
           <p className="header-label">Manufacturing /<br />Custom Components /<br />Since 1997</p>
-          <a className="btn btn--primary" href="#enquiry">Enquire Now <Icon id="i-arrow-ne" /></a>
+          <Link className="btn btn--primary" href="/contact#enquiry-form">Enquire Now <Icon id="i-arrow-ne" /></Link>
         </div>
 
         <button
