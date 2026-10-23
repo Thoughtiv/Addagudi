@@ -6,32 +6,28 @@ import { MachineryTeaser } from "@/components/MachineryParts";
 import { ProductsTeaser } from "@/components/ProductsSection";
 import { QualityTeaser } from "@/components/QualitySections";
 import { company } from "@/lib/content";
+import { getMachines, getSettings } from "@/lib/data";
+import { toTel } from "@/lib/phone";
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: company.name,
-  alternateName: company.short,
-  foundingDate: String(company.founded),
-  email: company.email,
-  telephone: "+91-40-20004225",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Plot #60/C, Phase-I, I.D.A. Jeedimetla, Shapur Nagar",
-    addressLocality: "Hyderabad",
-    postalCode: "500055",
-    addressCountry: "IN",
-  },
-};
-
-export default function Home() {
+export default async function Home() {
+  const [settings, machines] = await Promise.all([getSettings(), getMachines()]);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: company.name,
+    alternateName: company.short,
+    foundingDate: String(company.founded),
+    email: settings.email || undefined,
+    telephone: settings.phone ? toTel(settings.phone).replace("tel:", "") : undefined,
+    address: settings.address ? { "@type": "PostalAddress", streetAddress: settings.address, addressCountry: "IN" } : undefined,
+  };
   return (
     <main id="main">
       <Hero />
       <CapabilityStrip />
       <CapabilitiesSection home />
       <ProductsTeaser />
-      <MachineryTeaser />
+      <MachineryTeaser machines={machines} />
       <QualityTeaser />
       <CtaBand />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

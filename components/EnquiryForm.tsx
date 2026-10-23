@@ -1,20 +1,21 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { company } from "@/lib/content";
+import type { SiteSettings } from "@/lib/content";
+import { toTel } from "@/lib/phone";
 import { validateEnquiry, type EnquiryErrors, type EnquiryInput } from "@/lib/enquiry-validation";
 import { Icon } from "./Icon";
 
 type Status = { kind: "success" | "error" | "info"; node: React.ReactNode } | null;
 const KEYS = ["name", "email", "phone", "message"] as const;
 
-function mailtoHref(d: EnquiryInput) {
+function mailtoHref(d: EnquiryInput, email: string) {
   const body = [`Name: ${d.name}`, `Company: ${d.company || "-"}`, `Email: ${d.email}`, `Phone: ${d.phone || "-"}`, "", d.message].join("\r\n");
   const subject = `Enquiry from ${d.name}${d.company ? ` (${d.company})` : ""}`;
-  return `mailto:${company.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-export function EnquiryForm() {
+export function EnquiryForm({ settings }: { settings: SiteSettings }) {
   const [values, setValues] = useState<EnquiryInput & { website: string }>({ name: "", company: "", email: "", phone: "", message: "", website: "" });
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [busy, setBusy] = useState(false);
@@ -64,10 +65,10 @@ export function EnquiryForm() {
       }
       if (res.status === 503) {
         // Server has no database configured: be honest and fall back to the visitor's email app.
-        const href = mailtoHref(data);
+        const href = mailtoHref(data, settings.email);
         announce({
           kind: "info",
-          node: <>Online enquiries are not switched on yet. Your email app should open with your enquiry filled in. <strong>It has not been sent</strong>: please press send there. If nothing opened, <a href={href}>use this link</a> or email <a href={`mailto:${company.email}`}>{company.email}</a>.</>,
+          node: <>Online enquiries are not switched on yet. Your email app should open with your enquiry filled in. <strong>It has not been sent</strong>: please press send there. If nothing opened, <a href={href}>use this link</a> or email <a href={`mailto:${settings.email}`}>{settings.email}</a>.</>,
         });
         window.location.href = href;
         return;
@@ -86,7 +87,7 @@ export function EnquiryForm() {
     } catch {
       announce({
         kind: "error",
-        node: <>Sorry, your enquiry could not be sent. Please try again, or email <a href={`mailto:${company.email}`}>{company.email}</a> or call <a href={company.phone.href}>{company.phone.label}</a>.</>,
+        node: <>Sorry, your enquiry could not be sent. Please try again, or email <a href={`mailto:${settings.email}`}>{settings.email}</a>{settings.phone && <> or call <a href={toTel(settings.phone)}>{settings.phone}</a></>}.</>,
       });
     } finally {
       setBusy(false);
@@ -129,7 +130,7 @@ export function EnquiryForm() {
         <button className="btn btn--primary btn--lg" type="submit" disabled={busy} aria-busy={busy}>
           {busy ? "Sending…" : <>Send enquiry <Icon id="i-arrow-r" /></>}
         </button>
-        <p className="form__note">To share a drawing or specification, reply to our confirmation or email it to {company.email}.</p>
+        <p className="form__note">To share a drawing or specification, reply to our confirmation or email it to {settings.email}.</p>
       </div>
 
       <div ref={statusRef} className={`form__status${status?.kind === "error" ? " is-error" : ""}`} role="status" aria-live="polite" tabIndex={-1}>

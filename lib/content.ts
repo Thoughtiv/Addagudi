@@ -3,13 +3,19 @@
  * natural candidates to move into MongoDB collections (machines, products, capabilities).
  */
 
+/** Fixed company identity. Contact details are editable in the admin; these are the defaults. */
 export const company = {
   name: "Addagudi Exports Pvt. Ltd.",
   short: "AEPL",
   founded: 1997,
+};
+
+export type SiteSettings = { address: string; phone: string; mobile: string; email: string };
+
+export const defaultSettings: SiteSettings = {
   address: "Plot #60/C, Phase-I, I.D.A. Jeedimetla, Shapur Nagar, Hyderabad – 500055, India",
-  phone: { label: "040-20004225", href: "tel:+914020004225" },
-  mobile: { label: "09391028099", href: "tel:+919391028099" },
+  phone: "040-20004225",
+  mobile: "09391028099",
   email: "arvind@addagudiengineering.com",
 };
 
@@ -19,6 +25,7 @@ export const navItems = [
   { key: "products", label: "Products", href: "/products" },
   { key: "machinery", label: "Machinery", href: "/machinery" },
   { key: "quality", label: "Quality", href: "/quality" },
+  { key: "blog", label: "Blog", href: "/blog" },
   { key: "contact", label: "Contact", href: "/contact" },
 ] as const;
 
@@ -74,31 +81,36 @@ export const products = [
   { id: "pd-5", name: "OEM supply", desc: "Manufacturing against OEM requirements. Share your drawing with us." },
 ];
 
-/** Featured machines (cards). Images are representative stock photos, not AEPL's machines. */
-export const featuredMachines = [
-  { no: "01", name: "CNC Lathe Machine", model: "YCM TC-15", image: "/img/machine-cnc-lathe-a.webp", w: 960, h: 720, pos: "50% 50%", alt: "A CNC turning center with a front-loading enclosure. Representative image of a CNC lathe." },
-  { no: "02", name: "CNC Lathe Machine", model: "YCM GT 200 A", image: "/img/machine-cnc-lathe-b.webp", w: 960, h: 740, pos: "50% 50%", alt: "A CNC lathe with a control panel and sliding guard door. Representative image of a CNC lathe." },
-  { no: "03", name: "Milling Machine", model: "CINCINATTI", image: "/img/machine-milling-a.webp", w: 960, h: 1707, pos: "50% 38%", alt: "A vertical knee-type milling machine on a workshop floor. Representative image of a milling machine." },
-  { no: "04", name: "Drilling Machine", model: "MEW 25/250", image: "/img/machine-drilling.webp", w: 960, h: 720, pos: "50% 50%", alt: "A radial arm drilling machine in a machine shop. Representative image of a drilling machine." },
-  { no: "05", name: "Milling Machine", model: "MANFORD", image: "/img/machine-milling-b.webp", w: 960, h: 1605, pos: "50% 35%", alt: "A vertical milling machine with digital readout. Representative image of a milling machine." },
-];
+export type MachineItem = {
+  id: string;
+  name: string;
+  model: string;
+  /** "/api/media/<id>" (uploaded) or "/img/..." (bundled); empty when there is no photo */
+  image: string;
+  alt: string;
+  pos?: string;
+};
 
-/** Full inventory as listed on AEPL's earlier website; spellings preserved pending confirmation. */
-export const machineList = [
-  ["CNC Lathe Machine", "YCM TC-15"],
-  ["CNC Lathe Machine", "YCM GT 200 A"],
-  ["CNC Lathe Machine", "Milltronics"],
-  ["CNC Milling Machine", "Milltronics"],
-  ["Drilling Machine", "MEW 25/250"],
-  ["Drilling Machine", "HMP"],
-  ["Band Saw Cutting Machine", "DMSons"],
-  ["Surface Grinding Machine", "HMT"],
-  ["Milling Machine", "CINCINATTI"],
-  ["Milling DRO", "MANFORD"],
-  ["Tapping Machine", "Tapax"],
-  ["Centrifugal Finishing Machine", "Gala Precision"],
-  ["Lathe Machine", "SAMRAT"],
-] as const;
+/**
+ * Built-in machinery, from AEPL's earlier equipment list (spellings preserved pending confirmation).
+ * The first five have representative stock photos. The admin dashboard can import these into the
+ * database and from then on edit, add, reorder or remove machines.
+ */
+export const defaultMachines: MachineItem[] = [
+  { id: "default-1", name: "CNC Lathe Machine", model: "YCM TC-15", image: "/img/machine-cnc-lathe-a.webp", alt: "A CNC turning center with a front-loading enclosure. Representative image of a CNC lathe." },
+  { id: "default-2", name: "CNC Lathe Machine", model: "YCM GT 200 A", image: "/img/machine-cnc-lathe-b.webp", alt: "A CNC lathe with a control panel and sliding guard door. Representative image of a CNC lathe." },
+  { id: "default-3", name: "Milling Machine", model: "CINCINATTI", image: "/img/machine-milling-a.webp", pos: "50% 38%", alt: "A vertical knee-type milling machine on a workshop floor. Representative image of a milling machine." },
+  { id: "default-4", name: "Drilling Machine", model: "MEW 25/250", image: "/img/machine-drilling.webp", alt: "A radial arm drilling machine in a machine shop. Representative image of a drilling machine." },
+  { id: "default-5", name: "Milling Machine", model: "MANFORD", image: "/img/machine-milling-b.webp", pos: "50% 35%", alt: "A vertical milling machine with digital readout. Representative image of a milling machine." },
+  { id: "default-6", name: "CNC Lathe Machine", model: "Milltronics", image: "", alt: "" },
+  { id: "default-7", name: "CNC Milling Machine", model: "Milltronics", image: "", alt: "" },
+  { id: "default-8", name: "Drilling Machine", model: "HMP", image: "", alt: "" },
+  { id: "default-9", name: "Band Saw Cutting Machine", model: "DMSons", image: "", alt: "" },
+  { id: "default-10", name: "Surface Grinding Machine", model: "HMT", image: "", alt: "" },
+  { id: "default-12", name: "Tapping Machine", model: "Tapax", image: "", alt: "" },
+  { id: "default-13", name: "Centrifugal Finishing Machine", model: "Gala Precision", image: "", alt: "" },
+  { id: "default-14", name: "Lathe Machine", model: "SAMRAT", image: "", alt: "" },
+];
 
 export const steps = [
   { num: "01", title: "Raw material", desc: "Incoming check" },

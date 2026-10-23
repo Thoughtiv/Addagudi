@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { company } from "@/lib/content";
+import type { SiteSettings } from "@/lib/content";
+import { toTel } from "@/lib/phone";
 import { EnquiryForm } from "./EnquiryForm";
 import { Eyebrow } from "./Eyebrow";
 import { Icon } from "./Icon";
@@ -29,7 +30,7 @@ export function CtaBand() {
 }
 
 /** /contact body: contact details beside the enquiry form. */
-export function EnquirySection() {
+export function EnquirySection({ settings }: { settings: SiteSettings }) {
   return (
     <section className="cta cta--page" aria-label="Enquiry form and contact details">
       <div className="cta__bg" aria-hidden="true" />
@@ -39,13 +40,13 @@ export function EnquirySection() {
             <h2>Contact AEPL</h2>
             <p>Prefer to talk? Call or email the team directly.</p>
             <ul>
-              <li><Icon id="i-pin" /><address>{company.address}</address></li>
-              <li><Icon id="i-phone" /><a href={company.phone.href}>{company.phone.label}</a></li>
-              <li><Icon id="i-phone" /><a href={company.mobile.href}>{company.mobile.label}</a></li>
-              <li><Icon id="i-mail" /><a href={`mailto:${company.email}`}>{company.email}</a></li>
+              {settings.address && <li><Icon id="i-pin" /><address>{settings.address}</address></li>}
+              {settings.phone && <li><Icon id="i-phone" /><a href={toTel(settings.phone)}>{settings.phone}</a></li>}
+              {settings.mobile && <li><Icon id="i-phone" /><a href={toTel(settings.mobile)}>{settings.mobile}</a></li>}
+              {settings.email && <li><Icon id="i-mail" /><a href={`mailto:${settings.email}`}>{settings.email}</a></li>}
             </ul>
           </div>
-          <div className="reveal"><EnquiryForm /></div>
+          <div className="reveal"><EnquiryForm settings={settings} /></div>
         </div>
       </div>
     </section>

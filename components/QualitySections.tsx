@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { company, qualityChecks } from "@/lib/content";
+import { qualityChecks } from "@/lib/content";
 import { Eyebrow } from "./Eyebrow";
 import { Icon } from "./Icon";
 
@@ -39,7 +39,7 @@ export function QualityTeaser() {
 }
 
 /** /quality body: practices, certificate preview, and the certificate dialog. */
-export function QualityDetails() {
+export function QualityDetails({ email }: { email: string }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   return (
@@ -79,7 +79,7 @@ export function QualityDetails() {
             sizes="(max-width: 640px) 90vw, 480px"
           />
           <div className="dialog__actions">
-            <a className="btn btn--primary" href={`mailto:${company.email}?subject=Quality%20certificate%20request`}>Request current certificate <Icon id="i-mail" /></a>
+            <a className="btn btn--primary" href={`mailto:${email}?subject=Quality%20certificate%20request`}>Request current certificate <Icon id="i-mail" /></a>
             <button className="btn btn--ghost" type="submit" autoFocus>Close</button>
           </div>
         </form>

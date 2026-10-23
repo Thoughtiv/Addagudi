@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { IconSprite } from "@/components/Icon";
-import { PageEffects } from "@/components/PageEffects";
 import "./globals.css";
 
 const barlow = localFont({
@@ -47,11 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <IconSprite />
-        <a className="skip-link" href="#main">Skip to content</a>
-        <Header />
         {children}
-        <Footer />
-        <PageEffects />
       </body>
     </html>
   );

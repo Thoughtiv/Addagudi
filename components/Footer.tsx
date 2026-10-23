@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { company } from "@/lib/content";
+import { company, type SiteSettings } from "@/lib/content";
+import { toTel } from "@/lib/phone";
 import { Icon } from "./Icon";
 
-export function Footer() {
+export function Footer({ settings }: { settings: SiteSettings }) {
   return (
     <footer className="footer">
       <div className="container footer__grid">
@@ -17,7 +18,7 @@ export function Footer() {
         <nav className="footer__col" aria-label="Quick links">
           <h2 className="footer__h">Quick links</h2>
           <ul className="footer__links">
-            {[["About", "/about"], ["Products", "/products"], ["Machinery", "/machinery"], ["Quality", "/quality"], ["Enquiry", "/contact#enquiry-form"], ["Contact", "/contact"]].map(([l, h]) => (
+            {[["About", "/about"], ["Products", "/products"], ["Machinery", "/machinery"], ["Quality", "/quality"], ["Blog", "/blog"], ["Enquiry", "/contact#enquiry-form"], ["Contact", "/contact"]].map(([l, h]) => (
               <li key={l}><Link href={h}>{l}</Link></li>
             ))}
           </ul>
@@ -26,10 +27,10 @@ export function Footer() {
         <div className="footer__col">
           <h2 className="footer__h">Contact us</h2>
           <address className="footer__contact">
-            <p><Icon id="i-pin" /><span>{company.address}</span></p>
-            <p><Icon id="i-phone" /><span>Phone: <a href={company.phone.href}>{company.phone.label}</a></span></p>
-            <p><Icon id="i-phone" /><span>Mobile: <a href={company.mobile.href}>{company.mobile.label}</a></span></p>
-            <p><Icon id="i-mail" /><span><a href={`mailto:${company.email}`}>{company.email}</a></span></p>
+            {settings.address && <p><Icon id="i-pin" /><span>{settings.address}</span></p>}
+            {settings.phone && <p><Icon id="i-phone" /><span>Phone: <a href={toTel(settings.phone)}>{settings.phone}</a></span></p>}
+            {settings.mobile && <p><Icon id="i-phone" /><span>Mobile: <a href={toTel(settings.mobile)}>{settings.mobile}</a></span></p>}
+            {settings.email && <p><Icon id="i-mail" /><span><a href={`mailto:${settings.email}`}>{settings.email}</a></span></p>}
           </address>
         </div>
 
