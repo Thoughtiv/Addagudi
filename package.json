@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit",
-    "admin:hash": "node scripts/hash-password.mjs"
+    "admin:create": "node --env-file-if-exists=.env.local scripts/create-admin.mjs"
   },
   "dependencies": {
     "mongoose": "^9.11.2",

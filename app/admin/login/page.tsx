@@ -5,7 +5,8 @@ import { authConfigured, getSession } from "@/lib/auth";
 
 export const metadata: Metadata = { title: "Sign in" };
 
-export default async function LoginPage() {
+export default async function LoginPage({ searchParams }: { searchParams: Promise<{ changed?: string }> }) {
+  const sp = await searchParams;
   if (await getSession()) redirect("/admin");
   const ready = authConfigured();
 
@@ -13,15 +14,16 @@ export default async function LoginPage() {
     <div className="a-login">
       <p className="a-brand__mark">AEPL</p>
       <h1>Admin sign in</h1>
+      {sp.changed && <div className="a-msg a-msg--ok" role="status">Password changed. Please sign in with the new password.</div>}
       {ready ? (
         <LoginForm />
       ) : (
         <div className="a-msg a-msg--err" role="alert">
           <p><strong>Admin sign-in is not set up yet.</strong></p>
-          <p>Add these to <code>.env.local</code> and restart the server:</p>
-          <pre>{`AUTH_SECRET=<random text, 32+ characters>
-ADMIN_USERNAME=<your username>
-ADMIN_PASSWORD_HASH=<from: npm run admin:hash -- "your password">`}</pre>
+          <p>Add these to <code>.env.local</code> (or your host&apos;s environment settings) and restart:</p>
+          <pre>{`MONGODB_URI=<your MongoDB connection string>
+AUTH_SECRET=<random text, 32+ characters>`}</pre>
+          <p>Then create the first admin: <code>npm run admin:create -- &lt;username&gt; &lt;password&gt;</code></p>
         </div>
       )}
     </div>

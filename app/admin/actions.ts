@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { checkCredentials, endSession, requireAdmin, startSession } from "@/lib/auth";
+import { changePassword, checkCredentials, endSession, requireAdmin, startSession } from "@/lib/auth";
 import { defaultMachines } from "@/lib/content";
 import { connectDb, isDbConfigured } from "@/lib/mongodb";
 import { deleteUploadedImage, saveUploadedImage, UploadError } from "@/lib/media";
@@ -38,19 +38,48 @@ export async function loginAction(_prev: ActionState, fd: FormData): Promise<Act
   const recent = (attempts.get(ip) ?? []).filter((t) => now - t < 15 * 60_000);
   if (recent.length >= 8) return { message: "Too many attempts. Please wait a few minutes and try again." };
 
-  if (!checkCredentials(str(fd, "username"), typeof fd.get("password") === "string" ? (fd.get("password") as string) : "")) {
+  let user = null;
+  try {
+    user = await checkCredentials(str(fd, "username"), typeof fd.get("password") === "string" ? (fd.get("password") as string) : "");
+  } catch (err) {
+    console.error("login failed", err);
+    return { message: "Could not reach the database. Please try again." };
+  }
+  if (!user) {
     recent.push(now);
     attempts.set(ip, recent);
     return { message: "Incorrect username or password." };
   }
   attempts.delete(ip);
-  await startSession(str(fd, "username"));
+  await startSession(user);
   redirect("/admin");
 }
 
 export async function logoutAction() {
   await endSession();
   redirect("/admin/login");
+}
+
+/* --------------------------------------------------------------- account */
+
+export async function changePasswordAction(_prev: ActionState, fd: FormData): Promise<ActionState> {
+  const session = await requireAdmin();
+  const current = typeof fd.get("current") === "string" ? (fd.get("current") as string) : "";
+  const next = typeof fd.get("next") === "string" ? (fd.get("next") as string) : "";
+  const confirm = typeof fd.get("confirm") === "string" ? (fd.get("confirm") as string) : "";
+
+  const errors: Record<string, string> = {};
+  if (!current) errors.current = "Please enter your current password.";
+  if (next.length < 10) errors.next = "Use at least 10 characters.";
+  else if (next === current) errors.next = "The new password must be different.";
+  if (confirm !== next) errors.confirm = "The two passwords do not match.";
+  if (Object.keys(errors).length) return { errors, message: "Please fix the highlighted fields." };
+
+  const problem = await changePassword(session.username, current, next);
+  if (problem) return { errors: { current: problem }, message: problem };
+  // the old session is now invalid (password fingerprint changed): sign in again
+  await endSession();
+  redirect("/admin/login?changed=1");
 }
 
 /* -------------------------------------------------------------- settings */
