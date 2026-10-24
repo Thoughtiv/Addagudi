@@ -135,7 +135,8 @@ button.btn--primary:hover .icon { transform: translateX(3px); }
   color: var(--text); padding-right: 12px; border-right: 2px solid var(--blue);
 }
 .brand__name { font-size: .5625rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; line-height: 1.35; color: var(--muted); }
-.brand--light .brand__mark { color: #fff; }
+.brand__logo { height: 32px; width: auto; padding-right: 12px; border-right: 2px solid var(--blue); box-sizing: content-box; }
+.brand--light .brand__logo { filter: brightness(0) invert(1); }
 .brand--light .brand__name { color: var(--on-dark-muted); }
 
 .site-nav { flex: 1; display: flex; justify-content: center; }

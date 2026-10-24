@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { AdminNav } from "@/components/admin/AdminNav";
 import { getSession } from "@/lib/auth";
@@ -21,7 +22,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="admin a-shell">
       <aside className="a-side">
         <Link className="a-brand" href="/admin" aria-label="AEPL admin home">
-          <span className="a-brand__mark">AEPL</span>
+          <Image className="a-brand__logo" src="/aepl-logo.png" alt="AEPL" width={1980} height={434} priority />
           <span className="a-brand__sub">Admin</span>
         </Link>
         <AdminNav />

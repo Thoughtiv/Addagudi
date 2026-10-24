@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 import { LoginForm } from "@/components/admin/LoginForm";
 import { authConfigured, getSession } from "@/lib/auth";
@@ -12,7 +13,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
 
   return (
     <div className="a-login">
-      <p className="a-brand__mark">AEPL</p>
+      <Image className="a-login__logo" src="/aepl-logo.png" alt="AEPL" width={1980} height={434} priority />
       <h1>Admin sign in</h1>
       {sp.changed && <div className="a-msg a-msg--ok" role="status">Password changed. Please sign in with the new password.</div>}
       {ready ? (

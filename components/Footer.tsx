@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { company, type SiteSettings } from "@/lib/content";
 import { toTel } from "@/lib/phone";
@@ -9,7 +10,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
       <div className="container footer__grid">
         <div className="footer__col footer__brand">
           <Link className="brand brand--light" href="/" aria-label="AEPL, home">
-            <span className="brand__mark" aria-hidden="true">AEPL</span>
+            <Image className="brand__logo" src="/aepl-logo.png" alt="" width={1980} height={434} />
             <span className="brand__name">Addagudi Exports<br />Pvt. Ltd.</span>
           </Link>
           <p className="footer__tag">Engineered components.<br />Precision manufacturing.</p>

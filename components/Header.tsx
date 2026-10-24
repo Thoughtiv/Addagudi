@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -26,7 +27,7 @@ export function Header() {
     <header className="site-header" id="top">
       <div className="site-header__inner">
         <Link className="brand" href="/" aria-label="AEPL, Addagudi Exports Pvt. Ltd. — home">
-          <span className="brand__mark" aria-hidden="true">AEPL</span>
+          <Image className="brand__logo" src="/aepl-logo.png" alt="" width={1980} height={434} priority />
           <span className="brand__name">Addagudi Exports<br />Pvt. Ltd.</span>
         </Link>
 
