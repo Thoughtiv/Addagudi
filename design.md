@@ -259,14 +259,11 @@ Suggested copy: "AEPL emphasizes quality throughout manufacturing
 through documented checks, first-article reporting, calibrated
 inspection equipment, and third-party inspection when required."
 
-The provided historical website screenshot displays a TÜV SÜD South Asia
-certificate for **ISO 9001:2008**. This is a historical certificate
-reference, not proof of current certification. Before publication: -
-Verify current certification status and validity. - Use a current
-certificate only if AEPL can provide it. - If current validity is not
-confirmed, describe the old certificate as historical or omit a
-prominent certification claim. - Never imply that ISO 9001:2008 is a
-current certification based solely on the old screenshot.
+The site shows AEPL's current TÜV SÜD South Asia certificate for
+**ISO 9001:2015** (registration no. 99 100 14407, valid 2024-06-01 until
+2027-05-31, subject to annual periodic audits). The older ISO 9001:2008
+certificate (expired 2011) is no longer shown. Update the image and caption
+in `components/QualitySections.tsx` when the certificate is renewed.
 
 ### I. Enquiry / Contact CTA
 
@@ -304,9 +301,9 @@ Quick links: About, Products, Machinery, Quality, Gallery, Enquiry,
 Contact. - Contact information. - Copyright line.
 
 Contact information captured from the supplied website screenshots: -
-**Company:** Addagudi Exports Pvt. Ltd. - **Address:** Plot #60/C,
-Phase-I, I.D.A. Jeedimetla, Shapur Nagar, Hyderabad -- 500055, India -
-**Phone:** 040-20004225 - **Mobile:** 09391028099 - **Email:**
+**Company:** Addagudi Exports Pvt. Ltd. - **Address:** Plot No
+60/C/G, Phase I, Road No 7, IDA Jeedimetla, Hyderabad -- 500055,
+Telangana, India - **Phone:** 9391027969 - **Mobile:** 9391028099 - **Email:**
 arvind@addagudiengineering.com
 
 Verify all contact details with the company before launch. Use clickable
@@ -405,8 +402,8 @@ CNC-turned and machined metallic components. - Work ranging from
 individual components to finished assembly/OEM requirements. - Quality
 practices described in the historical site include manufacturing-stage
 checks, first-article reports, calibrated inspection equipment,
-documented procedures, and third-party inspection when required. - A
-historical ISO 9001:2008 certificate is shown in the supplied content. -
+documented procedures, and third-party inspection when required. - The
+current ISO 9001:2015 certificate (valid 2024-2027) is shown. -
 Machinery names and models as listed in the source content.
 
 Do not invent: - Customer logos or testimonials. - Exact production

@@ -1,7 +1,7 @@
 /* Admin dashboard. Reuses the site's design tokens (see globals.css). */
 .admin { min-height: 100vh; background: var(--cool-white); color: var(--text); font-size: .9375rem; }
 .admin a { color: inherit; }
-.admin code { font-family: var(--font-mono); font-size: .85em; background: rgba(16, 20, 23, .06); padding: .1em .35em; }
+.admin code { font-family: var(--font-mono); font-size: .85em; background: rgba(16, 36, 58, .06); padding: .1em .35em; }
 .admin pre { margin: 8px 0 0; padding: 12px; background: var(--ink); color: #fff; overflow-x: auto; font-family: var(--font-mono); font-size: .75rem; line-height: 1.6; }
 
 .a-center { display: grid; place-items: center; padding: 24px; }
@@ -19,9 +19,9 @@
 .a-login__logo { height: 36px; width: auto; }
 .a-brand__sub { font-size: .6875rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-muted); }
 .a-nav { display: grid; gap: 2px; }
-.a-nav a { display: block; padding: 11px 12px; text-decoration: none; font-size: .8125rem; font-weight: 600; letter-spacing: .04em; color: #c5d0da; border-left: 3px solid transparent; transition: background-color .15s, color .15s; }
+.a-nav a { display: block; padding: 11px 12px; text-decoration: none; font-size: .8125rem; font-weight: 600; letter-spacing: .04em; color: #c8d9e5; border-left: 3px solid transparent; transition: background-color .15s, color .15s; }
 .a-nav a:hover { background: rgba(255, 255, 255, .06); color: #fff; }
-.a-nav a[aria-current] { color: #fff; background: rgba(8, 117, 225, .22); border-left-color: var(--blue-light); }
+.a-nav a[aria-current] { color: #fff; background: rgba(20, 99, 165, .22); border-left-color: var(--blue-light); }
 .a-side__foot { margin-top: auto; display: grid; gap: 10px; padding-inline: 8px; font-size: .8125rem; color: var(--on-dark-muted); }
 .a-side__foot a:hover, .a-link-btn:hover { color: #fff; }
 .a-link-btn { background: none; border: 0; padding: 0; font: inherit; color: var(--on-dark-muted); cursor: pointer; text-align: left; }
@@ -30,7 +30,7 @@
 .a-h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1; text-transform: uppercase; margin: 0 0 8px; letter-spacing: -.005em; }
 .a-titlebar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
 .a-lead { margin: 0 0 24px; color: var(--muted); max-width: 70ch; }
-.a-empty { padding: 28px; background: var(--white); border: 1px dashed #aab6c1; color: var(--muted); display: grid; gap: 16px; justify-items: start; }
+.a-empty { padding: 28px; background: var(--white); border: 1px dashed #b7c9d9; color: var(--muted); display: grid; gap: 16px; justify-items: start; }
 .a-empty p { margin: 0; }
 
 /* buttons */
@@ -58,7 +58,7 @@
 .a-field label, .a-field__bar label { font-size: .6875rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .a-opt { text-transform: none; letter-spacing: 0; font-weight: 500; }
 .a-field input[type="text"], .a-field input[type="email"], .a-field input[type="password"], .a-field select, .a-field textarea {
-  width: 100%; padding: 11px 12px; font: inherit; color: var(--text); background: var(--white); border: 1px solid #b9c4ce; border-radius: 2px;
+  width: 100%; padding: 11px 12px; font: inherit; color: var(--text); background: var(--white); border: 1px solid #b7c9d9; border-radius: 2px;
 }
 .a-field textarea { resize: vertical; line-height: 1.55; }
 .a-field input:focus, .a-field select:focus, .a-field textarea:focus { outline: 2px solid var(--blue); outline-offset: 0; border-color: var(--blue); }
@@ -96,7 +96,7 @@
 .a-table__actions form { margin: 0; }
 .a-badge { display: inline-block; padding: 3px 9px; font-size: .625rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: var(--cool-white); border: 1px solid var(--steel); color: var(--muted); }
 .a-badge--published, .a-badge--replied { background: #e8f4ec; border-color: #b7dcc3; color: #14532d; }
-.a-badge--new { background: #e6f1fd; border-color: #b4d4f6; color: var(--blue-deep); }
+.a-badge--new { background: #e5f3f9; border-color: #a2c6de; color: var(--blue-deep); }
 
 .a-machines { display: grid; gap: 10px; }
 .a-machine { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 12px; background: var(--white); border: 1px solid var(--steel); }
