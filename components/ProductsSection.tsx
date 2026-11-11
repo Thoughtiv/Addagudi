@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { productPhotos } from "@/lib/content";
 import { Eyebrow } from "./Eyebrow";
 import { Icon } from "./Icon";
 import { ProductList } from "./ProductList";
@@ -47,6 +48,36 @@ export function ProductsShowcase() {
           <ProductList variant="open" />
           <Link className="btn btn--primary btn--lg reveal" href="/contact#enquiry-form">Send an enquiry <Icon id="i-arrow-r" /></Link>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/** Products page: photographs of manufactured parts. */
+export function ProductGallery() {
+  return (
+    <section className="section gallery" aria-labelledby="gallery-title">
+      <div className="container">
+        <div className="gallery__head reveal">
+          <Eyebrow>Our portfolio</Eyebrow>
+          <h2 className="display h-section" id="gallery-title">
+            <span>Examples of</span>
+            <span className="accent">our components.</span>
+          </h2>
+          <p>A selection of parts manufactured by AEPL, from turned shafts and fasteners to pressed metal parts and gears. Our engineered parts are used across applications such as pumps, hydraulics, electrical equipment, automotive, agricultural equipment, industrial hardware, refrigeration and soil testing.</p>
+        </div>
+        <ul className="gallery__grid">
+          {productPhotos.map((p) => (
+            <li className="gallery__item reveal" key={p.file}>
+              <figure>
+                <div className="gallery__frame">
+                  <Image src={`/img/products/${p.file}.webp`} alt={`${p.name} manufactured by AEPL`} width={640} height={427} sizes="(max-width: 640px) 90vw, (max-width: 960px) 45vw, 380px" />
+                </div>
+                <figcaption>{p.name}</figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

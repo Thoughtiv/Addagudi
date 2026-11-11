@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
-import { ProductsShowcase } from "@/components/ProductsSection";
+import { ProductGallery, ProductsShowcase } from "@/components/ProductsSection";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -17,6 +17,7 @@ export default function Products() {
         lead="We manufacture a wide range of turned and machined components as per customer drawings and specifications, catering to various industrial requirements."
       />
       <ProductsShowcase />
+      <ProductGallery />
     </main>
   );
 }

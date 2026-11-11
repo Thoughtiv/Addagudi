@@ -13,9 +13,9 @@ export const company = {
 export type SiteSettings = { address: string; phone: string; mobile: string; email: string };
 
 export const defaultSettings: SiteSettings = {
-  address: "Plot #60/C, Phase-I, I.D.A. Jeedimetla, Shapur Nagar, Hyderabad – 500055, India",
-  phone: "040-20004225",
-  mobile: "09391028099",
+  address: "Plot No 60/C/G, Phase I, Road No 7, IDA Jeedimetla, Hyderabad – 500055, Telangana, India",
+  phone: "9391027969",
+  mobile: "9391028099",
   email: "arvind@addagudiengineering.com",
 };
 
@@ -67,10 +67,10 @@ export const capabilities = [
 ];
 
 export const stats = [
-  { value: "CNC", label: "Machining capability" },
-  { value: "Quality", label: "Focused production" },
-  { value: "Custom", label: "Engineered components" },
-  { value: "OEM", label: "Manufacturing support" },
+  { value: "1997", label: "Established in Hyderabad" },
+  { value: "ISO", label: "9001:2015 quality system" },
+  { value: "CNC", label: "Turning and milling capability" },
+  { value: "PPAP", label: "Level 3 documentation expertise" },
 ];
 
 export const products = [
@@ -80,6 +80,22 @@ export const products = [
   { id: "pd-4", name: "Custom components", desc: "Custom-made engineered components, from single parts upward." },
   { id: "pd-5", name: "OEM supply", desc: "Manufacturing against OEM requirements. Share your drawing with us." },
 ];
+
+/** Photographs of AEPL-manufactured parts, shown in the products gallery (supplied by AEPL). */
+export const productPhotos = [
+  { file: "acme-knurled-shafts", name: "ACME & Knurled Shafts" },
+  { file: "brass-components", name: "Brass Components" },
+  { file: "clevis-pins-precision-parts", name: "Clevis Pins & Precision Parts" },
+  { file: "copper-components", name: "Copper Components" },
+  { file: "gears-assemblies", name: "Gears & Assemblies" },
+  { file: "pressed-metal-components", name: "Pressed Metal Components" },
+  { file: "precision-machined-products", name: "Precision Machined Products" },
+  { file: "special-fasteners", name: "Special Fasteners" },
+  { file: "special-shafts", name: "Special Shafts" },
+  { file: "custom-engineered-parts", name: "Custom Engineered Parts" },
+  { file: "stainless-steel-components", name: "Stainless Steel Components" },
+  { file: "zinc-plated-components", name: "Zinc-Plated Components" },
+] as const;
 
 export type MachineItem = {
   id: string;

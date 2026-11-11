@@ -7,10 +7,13 @@ import { qualityChecks } from "@/lib/content";
 import { Eyebrow } from "./Eyebrow";
 import { Icon } from "./Icon";
 
+const CERT_SRC = "/img/certificate-iso9001-2015.webp";
+const CERT_W = 985;
+const CERT_H = 1600;
 const CERT_ALT =
-  "ISO 9001:2008 certificate issued by TÜV SÜD South Asia Private Limited to Addagudi Exports Pvt. Ltd. for manufacturing of machined/CNC turned metallic components, valid until 7 January 2011.";
+  "ISO 9001:2015 certificate issued by TÜV SÜD South Asia Private Limited to Addagudi Exports Pvt. Ltd. for manufacturing and exports of machined/CNC turned metallic components, valid from 1 June 2024 until 31 May 2027.";
 const CERT_CAPTION =
-  "Historical record: ISO 9001:2008 certificate issued by TÜV SÜD South Asia, valid until 7 January 2011. This is not a current certification.";
+  "ISO 9001:2015, certified by TÜV SÜD South Asia. Certificate no. 99 100 14407. Scope: manufacturing and exports of machined / CNC turned metallic components. Valid 1 June 2024 to 31 May 2027, subject to periodic surveillance audits.";
 
 /** Home teaser: headline, one paragraph, button to /quality, certificate thumbnail. */
 export function QualityTeaser() {
@@ -29,10 +32,56 @@ export function QualityTeaser() {
 
         <figure className="cert cert--small reveal">
           <Link className="cert__frame" href="/quality" aria-label="See the certificate and quality details">
-            <Image src="/img/certificate-iso9001-2008.webp" alt={CERT_ALT} width={540} height={810} sizes="(max-width: 960px) 60vw, 260px" style={{ width: "100%", height: "auto" }} />
+            <Image src={CERT_SRC} alt={CERT_ALT} width={CERT_W} height={CERT_H} sizes="(max-width: 960px) 60vw, 260px" style={{ width: "100%", height: "auto" }} />
           </Link>
           <figcaption>{CERT_CAPTION}</figcaption>
         </figure>
+      </div>
+    </section>
+  );
+}
+
+const EQUIPMENT = [
+  {
+    src: "/img/quality-video-measuring-machine.webp",
+    width: 900,
+    height: 1274,
+    name: "Video Measuring Machine",
+    alt: "Video measuring machine in the AEPL quality department: a white optical measuring head over a granite stage, with a monitor, keyboard and computer on an inspection bench.",
+  },
+  {
+    src: "/img/quality-optical-comparator.webp",
+    width: 1000,
+    height: 914,
+    name: "Optical Comparator",
+    alt: "Optical comparator, model BT-300TE, with a large circular projection screen, a measuring stage and a digital readout unit.",
+  },
+] as const;
+
+/** /quality: the dimensional inspection equipment used in the quality department. */
+export function InspectionEquipment() {
+  return (
+    <section className="section quality quality--equipment" aria-labelledby="equip-title">
+      <div className="container">
+        <div className="equipment__head reveal">
+          <Eyebrow>Inspection equipment</Eyebrow>
+          <h2 className="display h-section" id="equip-title">
+            <span>Measured</span>
+            <span className="accent">with precision.</span>
+          </h2>
+          <p>Components are checked for dimensional accuracy in our quality department using a video measuring machine and an optical comparator.</p>
+        </div>
+
+        <div className="equipment__grid">
+          {EQUIPMENT.map((e) => (
+            <figure className="equipment reveal" key={e.name}>
+              <div className="cert__frame cert__frame--static equipment__frame">
+                <Image src={e.src} alt={e.alt} width={e.width} height={e.height} sizes="(max-width: 760px) 90vw, 480px" />
+              </div>
+              <figcaption>{e.name}</figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -56,7 +105,7 @@ export function QualityDetails({ email }: { email: string }) {
 
         <figure className="cert reveal">
           <button className="cert__frame" type="button" onClick={() => dialogRef.current?.showModal()} aria-label="View the certificate larger">
-            <Image src="/img/certificate-iso9001-2008.webp" alt={CERT_ALT} width={540} height={810} sizes="(max-width: 960px) 80vw, 340px" style={{ width: "100%", height: "auto" }} />
+            <Image src={CERT_SRC} alt={CERT_ALT} width={CERT_W} height={CERT_H} sizes="(max-width: 960px) 80vw, 340px" style={{ width: "100%", height: "auto" }} />
           </button>
           <figcaption>{CERT_CAPTION}</figcaption>
         </figure>
@@ -72,14 +121,14 @@ export function QualityDetails({ email }: { email: string }) {
           <h2 className="display dialog__title" id="cert-dialog-title">Certification details</h2>
           <Image
             className="dialog__cert"
-            src="/img/certificate-iso9001-2008.webp"
-            alt="Full ISO 9001:2008 certificate issued by TÜV SÜD South Asia Private Limited to Addagudi Exports Pvt. Ltd., registration no. 99 100 03423, valid until 7 January 2011."
-            width={540}
-            height={810}
+            src={CERT_SRC}
+            alt="Full ISO 9001:2015 certificate issued by TÜV SÜD South Asia Private Limited to Addagudi Exports Pvt. Ltd., registration no. 99 100 14407, valid from 1 June 2024 until 31 May 2027."
+            width={CERT_W}
+            height={CERT_H}
             sizes="(max-width: 640px) 90vw, 480px"
           />
           <div className="dialog__actions">
-            <a className="btn btn--primary" href={`mailto:${email}?subject=Quality%20certificate%20request`}>Request current certificate <Icon id="i-mail" /></a>
+            <a className="btn btn--primary" href={`mailto:${email}?subject=Quality%20certificate%20request`}>Request certificate copy <Icon id="i-mail" /></a>
             <button className="btn btn--ghost" type="submit" autoFocus>Close</button>
           </div>
         </form>
