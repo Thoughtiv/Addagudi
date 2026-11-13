@@ -6,31 +6,32 @@ import { Icon } from "./Icon";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-/** Machine cards (photo, name, model) plus the stock-photo disclosure when bundled stock photos are shown. */
+/** Machine cards plus a disclosure when bundled representative photos are shown. */
 export function MachineCards({ machines }: { machines: MachineItem[] }) {
-  const showsStock = machines.some((m) => m.image.startsWith("/img/"));
+  const showsStock = machines.some((machine) => machine.image.startsWith("/img/"));
+
   return (
     <>
       <ul className="machines">
-        {machines.map((m, i) => (
-          <li className="machine reveal" key={m.id}>
+        {machines.map((machine, i) => (
+          <li className="machine reveal" key={machine.id}>
             <div className="machine__img">
-              {m.image ? (
+              {machine.image ? (
                 <Image
-                  src={m.image}
-                  alt={m.alt || `${m.name}${m.model ? ` ${m.model}` : ""}`}
+                  src={machine.image}
+                  alt={machine.alt || `${machine.name}${machine.model ? ` ${machine.model}` : ""}`}
                   fill
-                  unoptimized={m.image.startsWith("/api/")}
+                  unoptimized={machine.image.startsWith("/api/")}
                   sizes="(max-width: 600px) 45vw, (max-width: 1180px) 30vw, 230px"
-                  style={{ objectFit: "cover", objectPosition: m.pos ?? "50% 50%" }}
+                  style={{ objectFit: "cover", objectPosition: machine.pos ?? "50% 50%" }}
                 />
               ) : (
                 <span className="machine__none" aria-hidden="true"><Icon id="i-cnc" /></span>
               )}
               <span className="machine__no">{pad(i + 1)}</span>
             </div>
-            <h3>{m.name}</h3>
-            {m.model && <p>{m.model}</p>}
+            <h3>{machine.name}</h3>
+            {machine.model && <p>{machine.model}</p>}
           </li>
         ))}
       </ul>
@@ -61,7 +62,6 @@ export function MachineryTeaser({ machines }: { machines: MachineItem[] }) {
             <Link className="link-blue link-blue--right" href="/machinery">View full machine list <Icon id="i-arrow-r" /></Link>
           </div>
         </div>
-        <MachineCards machines={machines.slice(0, 5)} />
       </div>
     </section>
   );

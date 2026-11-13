@@ -108,9 +108,8 @@ export type MachineItem = {
 };
 
 /**
- * Built-in machinery, from AEPL's earlier equipment list (spellings preserved pending confirmation).
- * The first five have representative stock photos. The admin dashboard can import these into the
- * database and from then on edit, add, reorder or remove machines.
+ * Built-in machinery. The first five have representative stock photos. The admin dashboard can
+ * import these into the database and from then on edit, add, reorder or remove machines.
  */
 export const defaultMachines: MachineItem[] = [
   { id: "default-1", name: "CNC Lathe Machine", model: "YCM TC-15", image: "/img/machine-cnc-lathe-a.webp", alt: "A CNC turning center with a front-loading enclosure. Representative image of a CNC lathe." },
@@ -118,14 +117,6 @@ export const defaultMachines: MachineItem[] = [
   { id: "default-3", name: "Milling Machine", model: "CINCINATTI", image: "/img/machine-milling-a.webp", pos: "50% 38%", alt: "A vertical knee-type milling machine on a workshop floor. Representative image of a milling machine." },
   { id: "default-4", name: "Drilling Machine", model: "MEW 25/250", image: "/img/machine-drilling.webp", alt: "A radial arm drilling machine in a machine shop. Representative image of a drilling machine." },
   { id: "default-5", name: "Milling Machine", model: "MANFORD", image: "/img/machine-milling-b.webp", pos: "50% 35%", alt: "A vertical milling machine with digital readout. Representative image of a milling machine." },
-  { id: "default-6", name: "CNC Lathe Machine", model: "Milltronics", image: "", alt: "" },
-  { id: "default-7", name: "CNC Milling Machine", model: "Milltronics", image: "", alt: "" },
-  { id: "default-8", name: "Drilling Machine", model: "HMP", image: "", alt: "" },
-  { id: "default-9", name: "Band Saw Cutting Machine", model: "DMSons", image: "", alt: "" },
-  { id: "default-10", name: "Surface Grinding Machine", model: "HMT", image: "", alt: "" },
-  { id: "default-12", name: "Tapping Machine", model: "Tapax", image: "", alt: "" },
-  { id: "default-13", name: "Centrifugal Finishing Machine", model: "Gala Precision", image: "", alt: "" },
-  { id: "default-14", name: "Lathe Machine", model: "SAMRAT", image: "", alt: "" },
 ];
 
 export const steps = [

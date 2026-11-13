@@ -30,7 +30,10 @@ export async function getMachines(): Promise<MachineItem[]> {
     const docs = await Machine.find().sort({ order: 1, createdAt: 1 }).lean();
     // An empty collection means the admin has not imported/added machines yet: keep the built-in list.
     if (docs.length === 0) return defaultMachines;
-    return docs.map((d) => ({ id: String(d._id), name: d.name, model: d.model ?? "", image: d.image ?? "", alt: d.alt ?? "" }));
+    const activeSeedKeys = new Set(defaultMachines.map((machine) => machine.id));
+    const visibleDocs = docs.filter((doc) => !doc.seedKey?.startsWith("default-") || activeSeedKeys.has(doc.seedKey));
+    if (visibleDocs.length === 0) return defaultMachines;
+    return visibleDocs.map((d) => ({ id: String(d._id), name: d.name, model: d.model ?? "", image: d.image ?? "", alt: d.alt ?? "" }));
   } catch (err) {
     console.error("getMachines failed, using defaults", err);
     return defaultMachines;
