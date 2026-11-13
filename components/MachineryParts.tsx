@@ -8,12 +8,13 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 /** Machine cards plus a disclosure when bundled representative photos are shown. */
 export function MachineCards({ machines }: { machines: MachineItem[] }) {
-  const showsStock = machines.some((machine) => machine.image.startsWith("/img/"));
+  const cards = machines.filter((machine) => machine.showCard !== false);
+  const showsStock = cards.some((machine) => machine.image.startsWith("/img/"));
 
   return (
     <>
       <ul className="machines">
-        {machines.map((machine, i) => (
+        {cards.map((machine, i) => (
           <li className="machine reveal" key={machine.id}>
             <div className="machine__img">
               {machine.image ? (
