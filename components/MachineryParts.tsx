@@ -9,7 +9,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 /** Machine cards plus a disclosure when bundled representative photos are shown. */
 export function MachineCards({ machines }: { machines: MachineItem[] }) {
   const cards = machines.filter((machine) => machine.showCard !== false);
-  const showsStock = cards.some((machine) => machine.image.startsWith("/img/"));
+  const showsStock = cards.some((machine) => machine.image.startsWith("/img/machine-"));
 
   return (
     <>
@@ -38,7 +38,7 @@ export function MachineCards({ machines }: { machines: MachineItem[] }) {
       </ul>
       {showsStock && (
         <p className="note">
-          Photographs are representative stock images pending AEPL equipment photography; they do not show the named machines. See <Link href="/credits">image credits</Link>.
+          Machines without an AEPL photograph show representative stock images pending equipment photography; those do not show the named machines. See <Link href="/credits">image credits</Link>.
         </p>
       )}
     </>
