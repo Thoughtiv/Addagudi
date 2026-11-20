@@ -113,9 +113,10 @@ export type MachineItem = {
  * inventory table. The admin dashboard can import these into the database for editing.
  */
 export const defaultMachines: MachineItem[] = [
-  { id: "default-1", name: "CNC Lathe Machine", model: "YCM TC-15", image: "/img/machine-cnc-lathe-a.webp", alt: "A CNC turning center with a front-loading enclosure. Representative image of a CNC lathe." },
-  { id: "default-2", name: "CNC Lathe Machine", model: "YCM GT 200 A", image: "/img/machine-cnc-lathe-b.webp", alt: "A CNC lathe with a control panel and sliding guard door. Representative image of a CNC lathe." },
-  { id: "default-3", name: "Milling Machine", model: "CINCINATTI", image: "/img/machine-milling-a.webp", pos: "50% 38%", alt: "A vertical knee-type milling machine on a workshop floor. Representative image of a milling machine." },
+  { id: "default-1", name: "CNC Lathe Machine", model: "YCM TC-15", image: "/img/aepl-cnc-lathe-ycm.webp", pos: "50% 45%", alt: "An AEPL operator at a YCM CNC lathe in the AEPL workshop." },
+  { id: "default-2", name: "CNC Lathe Machine", model: "YCM GT 200 A", image: "/img/aepl-cnc-lathe-shopfloor.webp", pos: "70% 50%", alt: "CNC lathes with chip conveyors on the AEPL workshop floor." },
+  { id: "default-15", name: "Optical Comparator", model: "", image: "/img/quality-optical-comparator.webp", alt: "Optical comparator with a large circular projection screen, measuring stage and digital readout." },
+  { id: "default-3", name: "Milling Machine", model: "CINCINATTI", image: "", alt: "", showCard: false },
   { id: "default-4", name: "Drilling Machine", model: "MEW 25/250", image: "/img/machine-drilling.webp", alt: "A radial arm drilling machine in a machine shop. Representative image of a drilling machine." },
   { id: "default-5", name: "Milling Machine", model: "MANFORD", image: "/img/machine-milling-b.webp", pos: "50% 35%", alt: "A vertical milling machine with digital readout. Representative image of a milling machine." },
   { id: "default-6", name: "CNC Lathe Machine", model: "Milltronics", image: "", alt: "", showCard: false },
